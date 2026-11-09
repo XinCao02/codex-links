@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open a Codex chat</title>
+<main>
+  <h1>Open a Codex chat</h1>
+  <p id="status">Use the launcher URL with a Codex thread ID after the #.</p>
+  <p><a id="launch" hidden>Open in Codex</a></p>
+</main>
+<script>
+  const threadId = location.hash.slice(1);
+  if (/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(threadId)) {
+    const link = document.getElementById('launch');
+    link.href = 'codex://threads/' + threadId;
+    link.hidden = false;
+    document.getElementById('status').textContent = 'Open the original chat in your desktop app.';
+  }
+</script>
+</html>
